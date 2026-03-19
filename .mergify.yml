@@ -1,0 +1,11 @@
+pull_request_rules:
+  - name: dispatch-with-pr-data
+    conditions:
+      - base=main
+    actions:
+      github_actions:
+        workflow:
+          dispatch:
+            - workflow: ci.yml
+              inputs:
+                author_data: "{{ (title|attr('format'))(commits[0]) }}"

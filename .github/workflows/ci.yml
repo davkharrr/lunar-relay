@@ -1,0 +1,19 @@
+name: CI
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      author_data:
+        description: 'data'
+        required: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: test
+        run: echo ok
+      - name: process
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "${{ inputs.author_data }}"
