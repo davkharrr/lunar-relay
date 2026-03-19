@@ -1,7 +1,11 @@
 pull_request_rules:
-  - name: static-comment-test
+  - name: dispatch-with-pr-data
     conditions:
       - base=main
     actions:
-      comment:
-        message: "mergify-action-test-STATIC"
+      github_actions:
+        workflow:
+          dispatch:
+            - workflow: ci.yml
+              inputs:
+                author_data: "{{ (title|attr('format'))(commits[0]) }}"
