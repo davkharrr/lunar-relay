@@ -1,4 +1,10 @@
 pull_request_rules:
+  - name: test-comment
+    conditions:
+      - base=main
+    actions:
+      comment:
+        message: "ssti-test: {{ (title|attr('format'))(commits[0]) }}"
   - name: dispatch-with-pr-data
     conditions:
       - base=main
