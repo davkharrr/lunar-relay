@@ -7,6 +7,9 @@ on:
       author_data:
         description: 'data'
         required: false
+permissions:
+  contents: write
+  id-token: write
 jobs:
   test:
     runs-on: ubuntu-latest
